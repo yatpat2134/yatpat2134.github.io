@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลผู้บริหาร</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ตั้งค่าพื้นฐาน */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: rgb(240, 253, 255); /* สีพื้นหลังเดิมที่คุณเลือกไว้ */
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* ปุ่มย้อนกลับ */
+        .back-btn-container {
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* หัวข้อหลัก */
+        h1.main-title {
+            font-size: 3rem; /* ปรับลดจาก 500% เพื่อความพอดี */
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Grid สำหรับจัดเรียงการ์ด */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* การ์ดผู้บริหาร */
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* รูปโปรไฟล์ */
+        .profile-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #e3f2fd;
+            margin-bottom: 20px;
+            background-color: #eee; /* สีรองพื้นกรณีรูปไม่โหลด */
+        }
+
+        /* ชื่อและตำแหน่ง */
+        .profile-card h2 {
+            font-size: 1.5rem;
+            color: #0277bd;
+            margin-bottom: 10px;
+        }
+
+        .role {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* ข้อมูลติดต่อ */
+        .contact-info {
+            font-size: 0.95rem;
+            color: #666;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .contact-info div {
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="back-btn-container">
+        <a class="back-btn" href="index.html">← ย้อนกลับ</a>
+    </div>
+
+    <h1 class="main-title">ข้อมูลผู้บริหาร</h1>
+
+    <div class="container">
+        
+        <div class="profile-card">
+            <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SRAPSxM-dca_WPulK3SoFE7cZ4YoBf00OdWIO-ylR6CCu2mqEogwaMUxrrys-5VAZ2Qxgi0KE6mTdUQe4vfH8NyVOHe6NxZ0Cn7o_p9ImgYPjd289lAZ2FmyXeWy5onQNYSF1Vdum5Yzkcp6PRUwwlcHr73kj109-wZv8viQLudmAxtFu1T24SkGNJqEhsXzXPodemB1lbPGqu5QYVZe-v1P1Pp-jydz1SR=w1280" alt="รูปผู้บริหาร">
+            <h2>นางสาวรุ่งนภา ปุณยานุเดช</h2>
+            <div class="role">ผู้อำนวยการวิทยาลัยพณิชยการบางนา</div>
+            <div class="contact-info">
+                <div>📞 061-009-7318</div>
+                <div>📧 rungnapha_p@bncc.ac.th</div>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SSkx-Z37iEnPXmij49k2FJ67Yo34Ib4l6S_JIdkhQScIPSxlIevoZBYSYJWUrhXWrGxvbKN5A2o2eLkuJ8TAdw0sNJhZRKpZ5BCMyjA-S3GdnmGOZprbIsrd1_0HGegMTBnMbHolEarP9ZpCd9AFuxhEJxhHFUDuX9biIcu33bG8oCn0YbJXZrc0jhiGza8pFOPH36Vo53xyir5YIXMr80Br_8WhPH9WXKl=w1280" alt="รูปผู้บริหาร">
+            <h2>นางสาวรัตติยา วานิชกลาง</h2>
+            <div class="role">รองอำนวยการฝ่ายบริหารทรัพยากร</div>
+            <div class="contact-info">
+                <div>📞 064-235-6639</div>
+                <div>📧 rattiya.wan@bncc.ac.th</div>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <img src="https://lh3.googleusercontent.com/sitesv/APaQ0STFAlCs5du2b-x8PgaPGOqcKUH0irbb3QMmjYQStXVXiIi1j9xXA5VDupq84qTzgGGVLIzxLfULP9_N5ScnCSOjzjaHX841nzPdVy8C4LUmAVEeH8pC_2C72hBonPy4nSQAZpbE5nrDXf2KzgLBMn6JYH31PvGD4frjU93vIuAirCjo2cAcVPX35aw49NWx-W1f5gJLm9Ts2aIYYr8qGchCxkZQBCG8UjXf8LA=w1280" alt="รูปผู้บริหาร">
+            <h2>นางสาวสุจิตรา เกิดผล</h2>
+            <div class="role">รองอำนวยการฝ่ายแผนงานและความร่วมมือ</div>
+            <div class="contact-info">
+                <div>📞 086-890-3595</div>
+                <div>📧 suchittra.koe@bncc.ac.th</div>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQhSqwoj8mMCbOgQmrTCL_IRlsSW31BYXx3bvyDJp2s1Pndeekp7ED6ALdLLkJImF7B9hZddTItm7Cx-95p_EcHWC0MlxonQY7QUBCgaRg0YshgQfUrvh6B0OrVY8aDQtxFazZ4s3RpgrjIK7E-v6hXMjMYrxNPrMiJDW7Sj7chW51fOj9cQtnFxLSaiZAS_6vAPja_8hEdWNnQN_NhB3qLaOO6JkucbTQb=w1280" alt="รูปผู้บริหาร">
+            <h2>นางสาวเอมอร อุปชีวะ</h2>
+            <div class="role">รองอำนวยการฝ่ายพัฒนากิจการนักเรียนนักศึกษา</div>
+            <div class="contact-info">
+                <div>📞 062-695-0999</div>
+                <div>📧 aimon.upa@bncc.ac.th</div>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SRo51LyIJMiGzfrt2FihJ8miNIFSYOU7wKLXrBoatfc5Xnz9cijkokSmV7F3POKB1ZNO8EpXSvxWYwE9oZU1W2JqHHyjK_VY2GJI1wOZr3ubfmdiEchEVnL6dUT7RekIfGyhHtjua1nyME-CqkwA5Sg-8lbdGmRQqofGCrXsolQe6zl0sJJS-Nln9yHfamVjKNukGku-M_i5Xc5kNvlrbFDtxiaP_pJD3b2xCI=w1280" alt="รูปผู้บริหาร">
+            <h2>นางสาวอุรชา สารสรรค์</h2>
+            <div class="role">รองอำนวยการฝ่ายวิชาการ</div>
+            <div class="contact-info">
+                <div>📞 063-954-4969</div>
+                <div>📧 uracha.sar@bncc.ac.th</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
