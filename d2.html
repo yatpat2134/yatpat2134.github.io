@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลบุคลากร</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: rgb(240, 253, 255);
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ปุ่มย้อนกลับ */
+        .back-btn {
+            align-self: flex-start;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* หัวข้อหลัก */
+        h1.main-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* --- ส่วนของปุ่มเลือกแผนก --- */
+        .dept-selector {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap; /* ให้ปุ่มขึ้นบรรทัดใหม่ถ้ายาวเกิน */
+            max-width: 900px;
+        }
+
+        .dept-btn {
+            padding: 10px 20px; /* ปรับขนาดปุ่มให้เล็กลงนิดหน่อยเพื่อให้เรียงสวย */
+            font-size: 0.95rem;
+            border: 2px solid #04AA6D;
+            background-color: white;
+            color: #04AA6D;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Sarabun', sans-serif;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .dept-btn:hover {
+            background-color: #e8f5e9;
+            transform: translateY(-2px);
+        }
+
+        /* ปุ่มที่ถูกเลือกอยู่ (Active) */
+        .dept-btn.active {
+            background-color: #04AA6D;
+            color: white;
+            box-shadow: 0 4px 10px rgba(4, 170, 109, 0.3);
+        }
+
+        /* ซ่อนเนื้อหาแผนกไว้ก่อน แล้วค่อยโชว์ด้วย JS */
+        .dept-content {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.5s;
+        }
+        
+        /* แสดงเฉพาะตัวที่มี class 'active-content' */
+        .active-content {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- สไตล์การ์ดบุคลากร --- */
+        .section-header {
+            font-size: 1.5rem;
+            color: #04AA6D;
+            margin: 30px 0 20px 0;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #04AA6D;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            justify-items: center;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .single-col {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .person-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 320px;
+            border-top: 5px solid #04AA6D;
+        }
+
+        .person-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .person-card img {
+            width: 150px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background-color: #eee;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .person-name {
+            font-size: 1.25rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .person-role {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .department {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← ย้อนกลับ</a>
+
+    <h1 class="main-title">ข้อมูลบุคลากร</h1>
+
+    <div class="dept-selector">
+        <button class="dept-btn active" onclick="showDept('it')">แผนกเทคโนโลยีสารสนเทศ</button>
+        <button class="dept-btn" onclick="showDept('hotel')">แผนกการโรงแรม</button>
+        <button class="dept-btn" onclick="showDept('retail')">แผนกธุรกิจค้าปลีก</button>
+        <button class="dept-btn" onclick="showDept('office')">แผนกการจัดการสำนักงาน</button>
+    </div>
+
+    <div id="it-dept" class="dept-content active-content">
+        <div class="section-header">หัวหน้าแผนก</div>
+        <div class="single-col">
+            <div class="person-card">
+                <img src="images/it_head.jpg" alt="นายพรชัย ตุ่นแก้ว">
+                <div class="person-name">นายพรชัย ตุ่นแก้ว</div>
+                <div class="person-role">หัวหน้าแผนก / ครูประจำ</div>
+                <div class="department">แผนกวิชาเทคโนโลยีสารสนเทศ</div>
+            </div>
+        </div>
+
+        <div class="section-header">ครูประจำ</div>
+        <div class="single-col">
+            <div class="person-card">
+                <img src="images/it_t1.jpg" alt="นางพรจิรา เงินเจริญ">
+                <div class="person-name">นางพรจิรา เงินเจริญ</div>
+                <div class="person-role">ครูประจำ</div>
+                <div class="department">แผนกวิชาเทคโนโลยีสารสนเทศ</div>
+            </div>
+        </div>
+
+        <div class="section-header">ครูผู้ช่วย</div>
+        <div class="grid-container">
+            <div class="person-card">
+                <img src="images/it_t2.jpg" alt="นายอดิศร กล่องทอง">
+                <div class="person-name">นายอดิศร กล่องทอง</div>
+                <div class="person-role">ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาเทคโนโลยีสารสนเทศ</div>
+            </div>
+            <div class="person-card">
+                <img src="images/it_t3.jpg" alt="นายเจิมวุฒิ แจ่มดวง">
+                <div class="person-name">นายเจิมวุฒิ แจ่มดวง</div>
+                <div class="person-role">ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาเทคโนโลยีสารสนเทศ</div>
+            </div>
+            <div class="person-card">
+                <img src="images/it_t4.jpg" alt="นายอภินัทธ์ ไรมันชา">
+                <div class="person-name">นายอภินัทธ์ ไรมันชา</div>
+                <div class="person-role">ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาเทคโนโลยีสารสนเทศ</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hotel-dept" class="dept-content">
+        <div class="section-header">หัวหน้าแผนก</div>
+        <div class="single-col">
+            <div class="person-card">
+                <img src="images/hotel_head.jpg" alt="รูปหัวหน้าแผนก">
+                <div class="person-name">[ระบุชื่อหัวหน้าแผนก]</div>
+                <div class="person-role">หัวหน้าแผนก / ครูชำนาญการ</div>
+                <div class="department">แผนกวิชาการโรงแรม</div>
+            </div>
+        </div>
+        <div class="section-header">ครูอัตราจ้าง</div>
+        <div class="single-col">
+            <div class="person-card">
+                <img src="images/hotel_t1.jpg" alt="Mr.Richard Lacbayen Granada">
+                <div class="person-name" style="font-size: 1.1rem;">Mr.Richard Lacbayen Granada</div>
+                <div class="person-role">ครูอัตราจ้าง</div>
+                <div class="department">แผนกวิชาการโรงแรม</div>
+            </div>
+        </div>
+        <div class="section-header">ครูผู้ช่วย</div>
+        <div class="grid-container">
+            <div class="person-card">
+                <img src="images/hotel_t2.jpg" alt="นางภูภาพร วัฒนสินไพศาล">
+                <div class="person-name">นางภูภาพร วัฒนสินไพศาล</div>
+                <div class="person-role">ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาการโรงแรม</div>
+            </div>
+            <div class="person-card">
+                <img src="images/hotel_t3.jpg" alt="นางสาวสิราวรรณ เอี่ยมทัด">
+                <div class="person-name">นางสาวสิราวรรณ เอี่ยมทัด</div>
+                <div class="person-role">ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาการโรงแรม</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="retail-dept" class="dept-content">
+        <div class="section-header">หัวหน้าแผนก</div>
+        <div class="single-col">
+            <div class="person-card">
+                <img src="images/retail_head.jpg" alt="นางปุณณสิริ เทียนชัยสุรารัตน์">
+                <div class="person-name">นางปุณณสิริ เทียนชัยสุรารัตน์</div>
+                <div class="person-role">หัวหน้าแผนก / ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาการจัดการธุรกิจค้าปลีก</div>
+            </div>
+        </div>
+        <div class="section-header">ครูผู้ช่วย</div>
+        <div class="grid-container">
+            <div class="person-card">
+                <img src="images/retail_t1.jpg" alt="นางนภาพร ธิยาม">
+                <div class="person-name">นางนภาพร ธิยาม</div>
+                <div class="person-role">ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาการจัดการธุรกิจค้าปลีก</div>
+            </div>
+            <div class="person-card">
+                <img src="images/retail_t2.jpg" alt="นายชญานนท์ บนแท่นทิพย์">
+                <div class="person-name">นายชญานนท์ บนแท่นทิพย์</div>
+                <div class="person-role">ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาการจัดการธุรกิจค้าปลีก</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="office-dept" class="dept-content">
+        
+        <div class="section-header">หัวหน้าแผนก</div>
+        <div class="single-col">
+            <div class="person-card">
+                <img src="images/office_head.jpg" alt="นางสุภาพร ภู่พัด">
+                <div class="person-name">นางสุภาพร ภู่พัด</div>
+                <div class="person-role">หัวหน้าแผนก / ครู</div>
+                <div class="department">แผนกวิชาการจัดการสำนักงาน</div>
+            </div>
+        </div>
+
+        <div class="section-header">ครูอัตราจ้าง</div>
+        <div class="single-col">
+            <div class="person-card">
+                <img src="images/office_t1.jpg" alt="นางสาวนิภาพรรณ ดาน้อย">
+                <div class="person-name">นางสาวนิภาพรรณ ดาน้อย</div>
+                <div class="person-role">ครูอัตราจ้าง</div>
+                <div class="department">แผนกวิชาการจัดการสำนักงาน</div>
+            </div>
+        </div>
+
+        <div class="section-header">ครูผู้ช่วย</div>
+        <div class="single-col">
+            <div class="person-card">
+                <img src="images/office_t2.jpg" alt="นางสาวชูใจ ปานบางพงศ์">
+                <div class="person-name">นางสาวชูใจ ปานบางพงศ์</div>
+                <div class="person-role">ครูผู้ช่วย</div>
+                <div class="department">แผนกวิชาการจัดการสำนักงาน</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDept(deptName) {
+            // 1. ซ่อนเนื้อหาทั้งหมด
+            var contents = document.getElementsByClassName("dept-content");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active-content");
+            }
+
+            // 2. เอากรอบ Active ออกจากปุ่มทั้งหมด
+            var buttons = document.getElementsByClassName("dept-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            // 3. แสดงเนื้อหาที่เลือก
+            document.getElementById(deptName + "-dept").classList.add("active-content");
+
+            // 4. ไฮไลท์ปุ่มที่กด
+            var selectedBtn = document.querySelector(`button[onclick="showDept('${deptName}')"]`);
+            if(selectedBtn) {
+                selectedBtn.classList.add("active");
+            }
+        }
+    </script>
+
+</body>
+</html>
