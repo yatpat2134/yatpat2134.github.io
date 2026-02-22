@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web เก็บข้อมูล - หน้าหลัก</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: rgb(240, 253, 255);
+            /* จัด Layout แบบ Flex แนวตั้ง เพื่อดัน Footer ลงล่าง */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+        }
+
+        /* --- 1. ส่วนหัว (Header) --- */
+        header {
+            background-color: #04AA6D; /* สีเขียวธีมหลัก */
+            color: white;
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between; /* จัดข้อความซ้ายขวา */
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .header-subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* --- 2. ส่วนเนื้อหา (Main Content) --- */
+        main {
+            flex: 1; /* ขยายพื้นที่ให้เต็ม ดัน footer ลงไป */
+            display: flex;
+            justify-content: center; /* จัดกึ่งกลางแนวนอน */
+            align-items: center; /* จัดกึ่งกลางแนวตั้ง */
+            padding: 40px 20px;
+        }
+
+        .menu-container {
+            background-color: white;
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            border-top: 5px solid #04AA6D; /* เพิ่มลูกเล่นขอบบน */
+        }
+
+        h1.page-title {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* ปุ่มเมนู */
+        .menu-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background-color: #fff; /* เปลี่ยนพื้นหลังเป็นขาว */
+            color: #04AA6D; /* ตัวหนังสือสีเขียว */
+            border: 2px solid #04AA6D; /* ขอบสีเขียว */
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px; /* ปุ่มมน */
+            transition: all 0.3s ease;
+        }
+
+        /* Effect ปุ่ม */
+        .menu-btn:hover {
+            background-color: #04AA6D;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(4, 170, 109, 0.3);
+        }
+
+        /* --- 3. ส่วนท้าย (Footer) --- */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive สำหรับมือถือ */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .menu-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-title">ระบบสารสนเทศ</div>
+        <div class="header-subtitle">วิทยาลัยพณิชยการบางนา</div>
+    </header>
+
+    <main>
+        <div class="menu-container">
+            <h1 class="page-title">เมนูหลัก</h1>
+            
+            <a href="d1.html" class="menu-btn">
+                👤 ข้อมูลผู้บริหาร
+            </a>
+
+            <a href="d2.html" class="menu-btn">
+                👔 ข้อมูลบุคลากร
+            </a>
+
+            <a href="d3.html" class="menu-btn">
+                🎓 ข้อมูลนักเรียน นักศึกษา
+            </a>
+
+            <a href="d4.html" class="menu-btn">
+                📚 ข้อมูลสาขาวิชาที่เปิดสอน
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 วิทยาลัยพณิชยการบางนา. All Rights Reserved.</p>
+        <p style="font-size: 0.8em; color: #aaa; margin-top: 5px;">พัฒนาโดย แผนกวิชาเทคโนโลยีสารสนเทศ</p>
+    </footer>
+
+</body>
+</html>
