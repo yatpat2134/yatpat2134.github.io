@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลนักเรียน - วิทยาลัยพณิชยการบางนา</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: rgb(240, 253, 255);
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ปุ่มย้อนกลับ */
+        .back-btn {
+            align-self: flex-start;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        h1.main-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* --- สไตล์ตาราง --- */
+        .table-container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #04AA6D;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        th:first-child { border-top-left-radius: 10px; }
+        th:last-child { border-top-right-radius: 10px; }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* แถวรวมสุดท้าย */
+        tr:last-child td {
+            border-bottom: none;
+            font-weight: bold;
+            background-color: #e8f5e9;
+            color: #04AA6D;
+            font-size: 1.1rem;
+        }
+
+        .count-num {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            text-align: right;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            th, td { padding: 10px 5px; font-size: 0.9rem; }
+            h1.main-title { font-size: 1.8rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← ย้อนกลับ</a>
+
+    <h1 class="main-title">ข้อมูลจำนวนนักเรียน - นักศึกษา</h1>
+    <div class="subtitle">ประจำปีการศึกษา 2567 (ข้อมูล ณ เดือนกุมภาพันธ์)</div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2" style="vertical-align: middle;">ระดับชั้น</th>
+                    <th colspan="3">จำนวน (คน)</th>
+                </tr>
+                <tr>
+                    <th>ชาย</th>
+                    <th>หญิง</th>
+                    <th>รวม</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left; padding-left: 30px;">ปวช. 1</td>
+                    <td class="count-num">155</td>
+                    <td class="count-num">287</td>
+                    <td class="count-num">442</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding-left: 30px;">ปวช. 2</td>
+                    <td class="count-num">120</td>
+                    <td class="count-num">250</td>
+                    <td class="count-num">370</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding-left: 30px;">ปวช. 3</td>
+                    <td class="count-num">115</td>
+                    <td class="count-num">235</td>
+                    <td class="count-num">350</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding-left: 30px;">ปวส. 1</td>
+                    <td class="count-num">100</td>
+                    <td class="count-num">210</td>
+                    <td class="count-num">310</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding-left: 30px;">ปวส. 2</td>
+                    <td class="count-num">90</td>
+                    <td class="count-num">190</td>
+                    <td class="count-num">280</td>
+                </tr>
+                
+                <tr>
+                    <td style="text-align: left; padding-left: 30px;">รวมทั้งหมด</td>
+                    <td>580</td>
+                    <td>1,172</td>
+                    <td>1,752</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            * ข้อมูลจำนวนนักเรียนเป็นการประมาณการเพื่อการศึกษา<br>
+            ** ข้อมูลจริงอาจมีการเปลี่ยนแปลงตามปีการศึกษา
+        </div>
+    </div>
+
+</body>
+</html>
