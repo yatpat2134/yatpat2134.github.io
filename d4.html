@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลสาขาวิชาที่เปิดสอน</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: rgb(240, 253, 255);
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ปุ่มย้อนกลับ */
+        .back-btn {
+            align-self: flex-start;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* หัวข้อหลัก */
+        h1.main-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* หัวข้อย่อย (ระดับชั้น) */
+        h2.sub-title {
+            font-size: 1.8rem;
+            color: #04AA6D; /* สีเขียว */
+            margin-top: 40px; /* เว้นระยะห่างจากตารางด้านบน */
+            margin-bottom: 20px;
+            text-align: left;
+            width: 100%;
+            max-width: 800px;
+            border-left: 5px solid #04AA6D;
+            padding-left: 15px;
+        }
+
+        /* ตกแต่งตาราง */
+        .table-container {
+            width: 100%;
+            max-width: 800px;
+            overflow-x: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        thead tr {
+            background-color: #04AA6D;
+            color: white;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 15px 20px;
+        }
+
+        th {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* เส้นแบ่งและสีสลับแถว */
+        tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:last-of-type {
+            border-bottom: 2px solid #04AA6D;
+        }
+
+        tbody tr:hover {
+            background-color: #e8f5e9;
+            color: #04AA6D;
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .col-id {
+            width: 10%;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← ย้อนกลับ</a>
+
+    <h1 class="main-title">ข้อมูลสาขาวิชาที่เปิดสอน</h1>
+
+    <h2 class="sub-title">ระดับประกาศนียบัตรวิชาชีพ (ปวช.)</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-id">ลำดับ</th>
+                    <th>สาขาวิชา</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="col-id">1</td><td>สาขาวิชาการบัญชี</td></tr>
+                <tr><td class="col-id">2</td><td>สาขาวิชาการบัญชี (MEP)</td></tr>
+                <tr><td class="col-id">3</td><td>สาขาวิชาการขาย</td></tr>
+                <tr><td class="col-id">4</td><td>สาขาวิชาการเลขานุการ</td></tr>
+                <tr><td class="col-id">5</td><td>สาขาวิชาคอมพิวเตอร์ธุรกิจ</td></tr>
+                <tr><td class="col-id">6</td><td>สาขาวิชาภาษาต่างประเทศ (อังกฤษ)</td></tr>
+                <tr><td class="col-id">7</td><td>สาขาวิชาภาษาต่างประเทศ (จีน)</td></tr>
+                <tr><td class="col-id">8</td><td>สาขาวิชาโลจิสติกส์</td></tr>
+                <tr><td class="col-id">9</td><td>สาขาวิชาเทคโนโลยีสารสนเทศ</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="sub-title">ระดับประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.)</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-id">ลำดับ</th>
+                    <th>สาขาวิชา</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="col-id">1</td><td>สาขาวิชาการบัญชี</td></tr>
+                <tr><td class="col-id">2</td><td>สาขาวิชาการตลาด</td></tr>
+                <tr><td class="col-id">3</td><td>สาขาวิชาเทคโนโลยีธุรกิจดิจิทัล</td></tr>
+                <tr><td class="col-id">4</td><td>สาขางานธุรกิจอีคอมเมิร์ซ</td></tr>
+                <tr><td class="col-id">5</td><td>สาขาวิชาการจัดการทั่วไป</td></tr>
+                <tr><td class="col-id">6</td><td>สาขาวิชาการจัดการโลจิสติกส์</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
